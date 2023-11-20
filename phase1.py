@@ -61,3 +61,5 @@ if __name__ == "__main__":
     for symbole in args.symboles:
         historique = produire_historique(symbole, date_debut, date_fin, args.valeur)
         afficher_resultats(symbole, args.valeur, date_debut, date_fin, historique)
+
+        #commentaire
