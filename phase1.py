@@ -41,30 +41,17 @@ def produire_historique(symbole, date_debut, date_fin, valeur):
     return sorted(resultats)
 
         # Filtrer les données en fonction de la valeur demandée
-        historique_filtré = [(date, entry[valeur]) for date, entry in historique.items()]
-
-        # Trier par date
-        historique_filtré.sort()
-
-        return historique_filtré
-    
-
-    except requests.exceptions.RequestException as e:
-        print(f"Erreur lors de la requête : {e}")
-        return []
-
-def afficher_resultats(symbole, valeur, date_debut, date_fin, historique):
-    print(f"titre={symbole}: valeur={valeur}, début={date_debut}, fin={date_fin}")
-    print(historique)
-
-if __name__ == "__main__":
+def main():
     args = analyser_commande()
 
-    date_debut = args.début if args.début else datetime.today().strftime('%Y-%m-%d')
-    date_fin = args.fin if args.fin else datetime.today().strftime('%Y-%m-%d')
-
     for symbole in args.symboles:
-        historique = produire_historique(symbole, date_debut, date_fin, args.valeur)
-        afficher_resultats(symbole, args.valeur, date_debut, date_fin, historique)
+        debut = args.debut or args.fin
+        fin = agrs.fin or datetime.now().strftime('%Y-%m-%d')
 
-        #commentaire
+        historique = produire_historique(symbole, debut, fin, args.valeur)
+
+        print(f"titre={symbole}: valeur={args.valeur}, début¨={debut}, fin={fin}")
+        print(historique)
+
+if __name__ == "__main__":
+    main()
