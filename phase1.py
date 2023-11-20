@@ -23,18 +23,13 @@ def analyser_commande():
 
 def produire_historique(symbole, date_debut, date_fin, valeur):
     url = f'https://pax.ulaval.ca/action/{symbole}/historique/'
-    
-    params = {
-        'début': date_debut,
-        'fin': date_fin,
-    }
-
+    params = {'début': date_debut, 'fin': date_fin,}
     response = requests.get(url=url, params=params)
 
     try:
-        response.raise_for_status()  # Raises HTTPError for bad responses
-        data = response.json()
-        historique = data['historique']
+        response = response.json()  # Raises HTTPError for bad responses
+        historique = response['historique']
+    except Exception as e:
 
         # Filtrer les données en fonction de la valeur demandée
         historique_filtré = [(date, entry[valeur]) for date, entry in historique.items()]
