@@ -46,7 +46,7 @@ def main():
 
     for symbole in args.symboles:
         debut = args.debut or args.fin
-        fin = agrs.fin or datetime.now().strftime('%Y-%m-%d')
+        fin = args.fin or datetime.now().strftime('%Y-%m-%d')
 
         historique = produire_historique(symbole, debut, fin, args.valeur)
 
@@ -55,3 +55,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+    #commentaire
