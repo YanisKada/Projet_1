@@ -30,6 +30,15 @@ def produire_historique(symbole, date_debut, date_fin, valeur):
         response = response.json()  # Raises HTTPError for bad responses
         historique = response['historique']
     except Exception as e:
+        print(f"Erreur: {e}")
+        return []
+
+    resultats = []
+    for date, valeurs in historique.items():
+        if valeurs[valeur] is not None:
+            resultats.append((datetime.strptime(date, '%Y-%m-%d').date(), valeurs[valeur]))
+    
+    return sorted(resultats)
 
         # Filtrer les données en fonction de la valeur demandée
         historique_filtré = [(date, entry[valeur]) for date, entry in historique.items()]
@@ -38,6 +47,7 @@ def produire_historique(symbole, date_debut, date_fin, valeur):
         historique_filtré.sort()
 
         return historique_filtré
+    
 
     except requests.exceptions.RequestException as e:
         print(f"Erreur lors de la requête : {e}")
