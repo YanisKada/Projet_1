@@ -50,7 +50,7 @@ def main():
 
         historique = produire_historique(symbole, debut, fin, args.valeur)
 
-        print(f"titre={symbole}: valeur={args.valeur}, début¨={debut}, fin={fin}")
+        print(f"titre={symbole}: valeur={args.valeur}, début={debut}, fin={fin}")
         print(historique)
 
 if __name__ == "__main__":
